@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
         Instantiate(deathEffect, this.transform.position, Quaternion.identity);
 
         Destroy(this.gameObject);
-        DestroyImmediate(deathEffect, true);
+        //DestroyImmediate(deathEffect, true);
     }
     
 }
