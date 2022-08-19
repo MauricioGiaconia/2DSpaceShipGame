@@ -9,20 +9,22 @@ public class BackgroundController : MonoBehaviour
     [SerializeField] private float speed = 0.5f, 
     timeBetweenCloud = 3f, 
     axisXSpawn = -27f, 
-    axisYSpawnEnemy = 14f, 
-    timeBetweenEnemy = 1f,
-    timeStartSpawnEnemy = 4.5f;
+    axisYSpawnEnemy = 14f;
+    
+    private float timeBetweenEnemy = 2f;
     [SerializeField] private GameObject cloud1, cloud2, enemy;
 
-    private float randomFloat, wait = 0f, aux=0f;
+    private float randomFloat, wait = 0f;
     private int randomInt;
 
     // Start is called before the first frame update
     void Start()
     {      
         
+        //Spawn aleatorio de nubes
         InvokeRepeating("SpawnCloud", 0, timeBetweenCloud);
 
+        //Metodo anterior utilizado para que los enemigos disparen
         //InvokeRepeating("SpawnEnemy", timeStartSpawnEnemy, timeBetweenEnemy);
 
     }
