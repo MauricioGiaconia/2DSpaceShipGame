@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public int health = 1;
 
     [SerializeField] private GameObject deathEffect;
+    [SerializeField] private int dmgToPlayer = 1;
     
     public void takeDamage(int dmg){
 
@@ -24,6 +25,17 @@ public class Enemy : MonoBehaviour
 
         Destroy(this.gameObject);
         //DestroyImmediate(deathEffect, true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D hitInfo) {
+        
+        Player player = hitInfo.GetComponent<Player>();
+
+        if (player != null){
+            
+            player.takeDamage(dmgToPlayer);
+            Die();
+        }
     }
     
 }
