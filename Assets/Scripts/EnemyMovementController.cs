@@ -12,12 +12,13 @@ public class EnemyMovementController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyMovement = new Vector2(0f, -(enemySpeed * Time.deltaTime + 0.01f));
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        enemyMovement = new Vector2(0f, -(enemySpeed * Time.deltaTime + 0.01f));
         this.transform.Translate(enemyMovement);
 
         if (this.transform.position.y < outOfScreen){
