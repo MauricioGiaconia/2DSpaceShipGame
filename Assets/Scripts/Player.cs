@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     private float changeToNormalColor = 0.25f, waitToChange = 0f;
     private bool hitted = false;
+
+    public GameObject restartButton;
     
     private void Start() {
         originalColor = this.GetComponent<Renderer>().material.color;
@@ -43,11 +45,6 @@ public class Player : MonoBehaviour
         }
     }
         
-           
-            
-
-            
-
     public void takeDamage(int dmg){
 
         health -= dmg;
@@ -63,9 +60,17 @@ public class Player : MonoBehaviour
 
     void Die(){
 
+        Restart reset = restartButton.GetComponent<Restart>();
+
         Instantiate(deathEffect, this.transform.position, Quaternion.identity);
 
         Destroy(this.gameObject);
-        DestroyImmediate(deathEffect, true);
+
+        if (reset != null){
+            reset.setDeath(true);
+        }
+
+        
     }
+    
 }

@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Restart : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+
+   
+    public GameObject restartButton;
+    private bool isDead;
+    
+
+    private void Start() {
+       
+        isDead = false;
+    }
+    private void Update() {
         
+       
+        if (isDead){
+            restartButton.SetActive(true);
+        }else{
+            restartButton.SetActive(false);
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void RestartGame() {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Carga la escena actual
+    }
+
+    public void setDeath(bool _isDead){
+        this.isDead = _isDead;
     }
 }
