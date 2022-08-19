@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   deathEffect: {fileID: 8038344524183138613, guid: 0277167a12290af47801444830a2be97, type: 3}
+  restartButton: {fileID: 0}
 --- !u!114 &8996940155444977663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec866487207960f40bee4e7f1a0a4201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 15
+  playerYPosition: -8
 --- !u!60 &4123653089189417971
 PolygonCollider2D:
   m_ObjectHideFlags: 0

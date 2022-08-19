@@ -195,7 +195,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300004, guid: 8aeb9e233fbb8f14db39770841b78b94, type: 3}
   m_Color: {r: 0.9622642, g: 0.07535656, b: 0, a: 1}
   m_FlipX: 0
@@ -223,6 +223,7 @@ MonoBehaviour:
   firePointTwo: {fileID: 3991269752824911307}
   bulletPrefab: {fileID: 1019480068096796, guid: 1740469607c5ef74a9dce354e6c48998, type: 3}
   originalIsShooting: 1
+  fireRate: 0.75
 --- !u!114 &1508421129261621935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   deathEffect: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
+  dmgToPlayer: 1
 --- !u!60 &5476943383322004489
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -260,7 +262,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -279,6 +281,7 @@ PolygonCollider2D:
       - {x: 0.21490553, y: -0.10484335}
       - {x: 0.24793173, y: -0.10692728}
       - {x: 0.24499999, y: 0.13}
+      - {x: 0.17257062, y: 0.15749314}
       - {x: 0.085, y: 0.22999999}
       - {x: -0.085, y: 0.22999999}
       - {x: -0.235, y: 0.13}
@@ -292,7 +295,7 @@ PolygonCollider2D:
       - {x: 0.024446521, y: -0.19948399}
       - {x: 0.05389306, y: -0.18671662}
       - {x: 0.06894925, y: -0.024764992}
-      - {x: 0.19710907, y: -0.110191286}
+      - {x: 0.19286425, y: -0.10276283}
 --- !u!1 &5381330360730679029
 GameObject:
   m_ObjectHideFlags: 0
