@@ -10,7 +10,8 @@ public class EnemyShoot : MonoBehaviour
 
     public bool originalIsShooting = true;
 
-    private float fireRate = 0.5f, nextFire = 0f, yPositionToStartShoot = 10f;
+    [SerializeField] private float fireRate = 0.75f;
+    private float nextFire = 0f, yPositionToStartShoot = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,12 +25,10 @@ public class EnemyShoot : MonoBehaviour
 
         if (this.transform.position.y < yPositionToStartShoot){
             if (Time.time > nextFire){
-            nextFire = Time.time + fireRate;
-            Shoot();
+                nextFire = Time.time + fireRate;
+                Shoot();
+            }
         }
-        
-        }
-        
     }
 
     void Shoot(){
