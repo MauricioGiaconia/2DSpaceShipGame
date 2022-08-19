@@ -5,22 +5,28 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] public float speed = 4.0f;
+    public float speed = 15.0f;
     private float nextPosition = 0f;
+
+    //Posicion final jugable del eje Y para la nave
+    [SerializeField] private float playerYPosition = -8f;
     private Vector2 startPosition;
     private Vector2 moveShip;
 
     // Start is called before the first frame update
     void Start()
     {
-       startPosition = new Vector2(0, -0.01f + (speed+2) * Time.time);
-       moveShip = new Vector2(speed * Time.deltaTime + 0.01f, 0);
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this.transform.position.y < -8f){
+
+        startPosition = new Vector2(0, -(speed * Time.deltaTime));
+        moveShip = new Vector2(speed * Time.deltaTime + 0.01f, 0);
+
+        if (this.transform.position.y < playerYPosition){
             this.transform.Translate(startPosition);
         }
         
