@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
 
-    public float speed = 10f;
+    public float speed = 15f;
     public Rigidbody2D rb;
 
     [SerializeField] private float flameMovement = 15f;
@@ -32,9 +32,6 @@ public class BulletController : MonoBehaviour
     {
          Vector3 actualScale = this.transform.localScale;
 
-        
-        
-        
         if ((actualScale.x < maxScale && actualScale.y < maxScale) && !reset && Time.time > nextScale){
 
             nextScale = Time.time + scaleRate;
@@ -62,16 +59,22 @@ public class BulletController : MonoBehaviour
         
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         Player player = hitInfo.GetComponent<Player>();
+        bool impactBullet = false;
 
-        
-        if (enemy != null){
+        if (enemy != null && !isEnemyBullet){
+
             enemy.takeDamage(dmg);
-        } else if (player != null){
+            impactBullet = true;
+            
+        } else if (player != null && isEnemyBullet){
            
             player.takeDamage(dmgToPlayer);
+            impactBullet = true;
         }
 
-        Instantiate(impactEffect, this.transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
+        if (impactBullet){
+            Instantiate(impactEffect, this.transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
     }
 }
