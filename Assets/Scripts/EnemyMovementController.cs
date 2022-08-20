@@ -6,27 +6,18 @@ public class EnemyMovementController : MonoBehaviour
 {
 
     [SerializeField] private float enemySpeed = 4f;
-    public GameObject _playerShip;
 
-    public GameObject PlayerShip{
-        get{
-            return _playerShip;
-        }
-
-        set{
-            _playerShip = value;
-        }
-    }
+    private Player player;
 
     [SerializeField] private int dmg = 1;
-    private Player player;
     private float outOfScreen = -11f;
     Vector2 enemyMovement;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Encuentra el primer objecto de tipo player cargado
+        player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
@@ -39,9 +30,8 @@ public class EnemyMovementController : MonoBehaviour
 
             Destroy(this.gameObject);
 
-            if (_playerShip != null){
-                
-                player = _playerShip.GetComponent<Player>();
+            if (player != null){
+    
                 player.takeDamage(dmg);
             
             } 
