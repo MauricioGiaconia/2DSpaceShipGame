@@ -12,7 +12,7 @@ public class BackgroundController : MonoBehaviour
     axisYSpawnEnemy = 14f;
     
     private float timeBetweenEnemy = 2f;
-    [SerializeField] private GameObject cloud1, cloud2, enemy;
+    [SerializeField] private GameObject cloud1, cloud2, enemy, player;
 
     private float randomFloat, wait = 0f;
     private int randomInt;
@@ -66,8 +66,13 @@ public class BackgroundController : MonoBehaviour
     }
 
     void SpawnEnemy(){
+
         randomFloat =  Random.Range(-17f, 17f);
         Vector3 spawnEnemy = new Vector3(randomFloat, axisYSpawnEnemy, 0f);
+
+        if (player != null){
+            enemy.GetComponent<EnemyMovementController>().PlayerShip = player;
+        }
 
         Instantiate(enemy, spawnEnemy, this.transform.rotation);
     }
