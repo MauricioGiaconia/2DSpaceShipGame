@@ -557,6 +557,7 @@ MonoBehaviour:
   timeBetweenCloud: 3
   axisXSpawn: -27
   axisYSpawnEnemy: 14
+  maxXPosition: 20.5
   cloud1: {fileID: 1463792721253185588, guid: 95a9e080870c45c418960d31e92e247c, type: 3}
   cloud2: {fileID: 2524595165850669532, guid: 12aa50613b0b3d94ca9da0f42b42919a, type: 3}
   enemy: {fileID: 7687964477593908152, guid: 68633a91a20fbee44b0b9dae233fc265, type: 3}
@@ -764,7 +765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2475994130861852264, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
       propertyPath: m_Name
-      value: ship2
+      value: player
       objectReference: {fileID: 0}
     - target: {fileID: 5736502867107774590, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
       propertyPath: health
@@ -774,6 +775,10 @@ PrefabInstance:
       propertyPath: restartButton
       value: 
       objectReference: {fileID: 519420028}
+    - target: {fileID: 7474509440514304095, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+      propertyPath: maxXPosition
+      value: 20.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
 --- !u!1001 &5867187463988930633
