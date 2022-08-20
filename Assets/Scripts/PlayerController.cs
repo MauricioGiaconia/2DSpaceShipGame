@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private float nextPosition = 0f;
 
     //Posicion final jugable del eje Y para la nave
-    [SerializeField] private float playerYPosition = -8f;
+    [SerializeField] private float playerYPosition = -8f, maxXPosition = 20.5f;
     private Vector2 startPosition;
     private Vector2 moveShip;
 
@@ -35,14 +35,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A)){
 
             nextPosition = this.transform.position.x - moveShip.x;
-            if (nextPosition > -17f){
+            if (nextPosition > -maxXPosition){
                 this.transform.Translate(moveShip);
             }
             
         } else if (Input.GetKey(KeyCode.D)){
 
             nextPosition = this.transform.position.x + moveShip.x;
-            if (nextPosition < 17f){
+            if (nextPosition < maxXPosition){
                 this.transform.Translate(-moveShip);
             }
 

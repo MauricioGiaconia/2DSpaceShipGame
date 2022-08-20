@@ -9,7 +9,8 @@ public class BackgroundController : MonoBehaviour
     [SerializeField] private float speed = 0.5f, 
     timeBetweenCloud = 3f, 
     axisXSpawn = -27f, 
-    axisYSpawnEnemy = 14f;
+    axisYSpawnEnemy = 14f,
+    maxXPositionSpawn = 20.5f;
     
     private float timeBetweenEnemy = 2f;
     [SerializeField] private GameObject cloud1, cloud2, enemy, player;
@@ -67,7 +68,7 @@ public class BackgroundController : MonoBehaviour
 
     void SpawnEnemy(){
 
-        randomFloat =  Random.Range(-17f, 17f);
+        randomFloat =  Random.Range(-maxXPositionSpawn, maxXPositionSpawn);
         Vector3 spawnEnemy = new Vector3(randomFloat, axisYSpawnEnemy, 0f);
 
         if (player != null){

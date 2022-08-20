@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
         Instantiate(deathEffect, this.transform.position, Quaternion.identity);
 
         Destroy(this.gameObject);
-        //DestroyImmediate(deathEffect, true);
+       
     }
 
     private void OnTriggerEnter2D(Collider2D hitInfo) {
