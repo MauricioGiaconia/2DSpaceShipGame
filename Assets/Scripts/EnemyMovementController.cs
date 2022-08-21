@@ -32,7 +32,7 @@ public class EnemyMovementController : MonoBehaviour
 
             if (player != null){
     
-                player.takeDamage(dmg);
+                player.TakeDamage(dmg);
             
             } 
         }

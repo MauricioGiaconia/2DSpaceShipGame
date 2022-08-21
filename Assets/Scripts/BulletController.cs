@@ -14,7 +14,7 @@ public class BulletController : MonoBehaviour
     private float maxScale = 3f, minScale = 2f, scaleRate = 0.3f, nextScale = 0f, outScreen = 14f;
     private bool reset = false;
     
-    public int dmg = 20, dmgToPlayer = 1;
+    public float dmg = 20f, dmgToPlayer = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +68,7 @@ public class BulletController : MonoBehaviour
             
         } else if (player != null && isEnemyBullet){
            
-            player.takeDamage(dmgToPlayer);
+            player.TakeDamage(dmgToPlayer);
             impactBullet = true;
         }
 

@@ -5,12 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    public int health = 1;
+    public float health = 1;
 
     [SerializeField] private GameObject deathEffect;
-    [SerializeField] private int dmgToPlayer = 1;
+    [SerializeField] private float dmgToPlayer = 1;
     
-    public void takeDamage(int dmg){
+    public void takeDamage(float dmg){
 
         health -= dmg;
 
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
 
         if (player != null){
             
-            player.takeDamage(dmgToPlayer);
+            player.TakeDamage(dmgToPlayer);
             Die();
         }
     }

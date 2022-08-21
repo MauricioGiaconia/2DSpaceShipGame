@@ -5,7 +5,16 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    public int health = 3;
+    public delegate void OnHealthChangedDelegate();
+    public OnHealthChangedDelegate onHealthChangedCallback;
+    [SerializeField] private float health = 3f,
+    maxHealth = 3f,
+    maxTotalHealth = 5f;
+
+    public float Health { get { return health; } }
+    public float MaxHealth { get { return maxHealth; } }
+    public float MaxTotalHealth { get { return maxTotalHealth; } }
+
     [SerializeField] private GameObject deathEffect;
     private Color originalColor;
 
@@ -44,18 +53,47 @@ public class Player : MonoBehaviour
            
         }
     }
+
+    public void Heal(float health)
+    {
+        this.health += health;
+        ClampHealth();
+    }
+
         
-    public void takeDamage(int dmg){
+    public void TakeDamage(float dmg){
 
         health -= dmg;
 
-        if (health <= 0){
+        if (health <= 0f){
             Die();
         } else{
            
            hitted = true;
-  
+
         }
+
+        ClampHealth();
+    }
+
+    public void AddHealth()
+    {
+        if (maxHealth < maxTotalHealth)
+        {
+            maxHealth += 1;
+            health = maxHealth;
+
+            if (onHealthChangedCallback != null)
+                onHealthChangedCallback.Invoke();
+        }   
+    }
+
+    void ClampHealth()
+    {
+        health = Mathf.Clamp(health, 0, maxHealth);
+
+        if (onHealthChangedCallback != null)
+            onHealthChangedCallback.Invoke();
     }
 
     void Die(){
@@ -69,8 +107,6 @@ public class Player : MonoBehaviour
         if (reset != null){
             reset.setDeath(true);
         }
-
-        
     }
     
 }
