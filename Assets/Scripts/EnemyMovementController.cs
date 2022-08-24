@@ -10,7 +10,7 @@ public class EnemyMovementController : MonoBehaviour
     private Player player;
 
     [SerializeField] private int dmg = 1;
-    private float outOfScreen = -11f;
+    private float outOfScreen = -12f;
     Vector2 enemyMovement;
 
     // Start is called before the first frame update

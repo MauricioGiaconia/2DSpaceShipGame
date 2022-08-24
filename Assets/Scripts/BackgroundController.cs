@@ -6,7 +6,7 @@ using UnityEngine;
 public class BackgroundController : MonoBehaviour
 {
 
-    [SerializeField] private float speed = 0.5f, 
+    [SerializeField] private float speed = 0.15f, 
     timeBetweenCloud = 3f, 
     axisXSpawn = -27f, 
     axisYSpawnEnemy = 14f,
@@ -33,16 +33,20 @@ public class BackgroundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeBetweenEnemy = Random.Range(2, 10);
-        if (wait < timeBetweenCloud){
 
-            wait += Time.deltaTime;
+        if (enemy != null){
+            timeBetweenEnemy = Random.Range(2, 10);
+            if (wait < timeBetweenCloud){
 
-        } else{
+                wait += Time.deltaTime;
 
-            SpawnEnemy();
-            wait = 0f;
+            } else{
+
+                SpawnEnemy();
+                wait = 0f;
+            }
         }
+        
 
         Vector2 offset = new Vector2(0, Time.time*speed);
         GetComponent<Renderer>().material.mainTextureOffset = offset;

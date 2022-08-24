@@ -24,15 +24,16 @@ public class Player : MonoBehaviour
     private float changeToNormalColor = 0.25f, waitToChange = 0f;
     private bool hitted = false;
 
-    public GameObject restartButton;
+    private DeadMenu restartButton;
     
     private void Start() {
+
         originalColor = this.GetComponent<Renderer>().material.color;
+        restartButton = FindObjectOfType<DeadMenu>();
     }
 
     private void Update() {
-        
-        
+          
         //Si la nave fue golpeada entonces se cambia el color de la nave
         if (hitted){
 
@@ -98,14 +99,14 @@ public class Player : MonoBehaviour
 
     void Die(){
 
-        Restart reset = restartButton.GetComponent<Restart>();
+      
 
         Instantiate(deathEffect, this.transform.position, Quaternion.identity);
 
         Destroy(this.gameObject);
 
-        if (reset != null){
-            reset.setDeath(true);
+        if (restartButton != null){
+            restartButton.setDeath(true);
         }
     }
     

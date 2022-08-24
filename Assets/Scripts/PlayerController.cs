@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         startPosition = new Vector2(0, -(speed * Time.deltaTime));
         moveShip = new Vector2(speed * Time.deltaTime + 0.01f, 0);
 
