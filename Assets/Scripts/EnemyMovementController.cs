@@ -16,7 +16,7 @@ public class EnemyMovementController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Encuentra el primer objecto de tipo player cargado
+        // Encuentra el objecto de tipo player
         player = FindObjectOfType<Player>();
     }
 

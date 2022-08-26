@@ -19,17 +19,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Die(){
+    public void Die(){
 
         Instantiate(deathEffect, this.transform.position, Quaternion.identity);
 
         Destroy(this.gameObject);
        
     }
-
-    private void OnTriggerEnter2D(Collider2D hitInfo) {
-        
-        Player player = hitInfo.GetComponent<Player>();
+    
+    private void OnCollisionEnter2D(Collision2D other) {
+        Player player = other.gameObject.GetComponent<Player>();
 
         if (player != null){
             
@@ -37,5 +36,4 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-    
 }

@@ -5,11 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public float speed = 15.0f;
+    public float speed = 18.0f;
+
+    public float Speed{
+        get{return speed;}
+        set{speed = value;}
+    }
     private float nextPosition = 0f;
 
     //Posicion final jugable del eje Y para la nave
-    [SerializeField] private float playerYPosition = -8f, maxXPosition = 20.5f;
+    [SerializeField] private float playerYPosition = -8.5f, maxXPosition = 20.5f;
     private Vector2 startPosition;
     private Vector2 moveShip;
 

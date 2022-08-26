@@ -10,12 +10,13 @@ public class BackgroundController : MonoBehaviour
     timeBetweenCloud = 3f, 
     axisXSpawn = -27f, 
     axisYSpawnEnemy = 14f,
-    maxXPositionSpawn = 20.5f;
+    maxXPositionSpawn = 20.5f,
+    timeBetweenBuffs = 25f;
     
-    private float timeBetweenEnemy = 2f;
     [SerializeField] private GameObject cloud1, cloud2, enemy;
+    [SerializeField] private GameObject[] buffsNerfs;
 
-    private float randomFloat, wait = 0f;
+    private float randomFloat, wait = 0f, waitBuff = 0f, timeBetweenEnemy = 2f;
     private int randomInt;
 
     // Start is called before the first frame update
@@ -36,7 +37,7 @@ public class BackgroundController : MonoBehaviour
 
         if (enemy != null){
             timeBetweenEnemy = Random.Range(2, 10);
-            if (wait < timeBetweenCloud){
+            if (wait < timeBetweenEnemy){
 
                 wait += Time.deltaTime;
 
@@ -44,6 +45,18 @@ public class BackgroundController : MonoBehaviour
 
                 SpawnEnemy();
                 wait = 0f;
+            }
+        }
+
+        if (buffsNerfs != null){
+            
+            if (waitBuff < timeBetweenBuffs){
+
+                waitBuff += Time.deltaTime;
+            } else{
+            
+                SpawnBuffsAndNerfs();
+                waitBuff = 0f;
             }
         }
         
@@ -77,5 +90,14 @@ public class BackgroundController : MonoBehaviour
 
         Instantiate(enemy, spawnEnemy, this.transform.rotation);
 
+    }
+
+    void SpawnBuffsAndNerfs(){
+
+        randomFloat =  Random.Range(-maxXPositionSpawn, maxXPositionSpawn);
+        int randomInt = Random.Range(0, buffsNerfs.Length);
+        Vector3 spawnBuffNerf = new Vector3(randomFloat, axisYSpawnEnemy, 0f);
+       
+        Instantiate(buffsNerfs[randomInt], spawnBuffNerf, this.transform.rotation);
     }
 }
