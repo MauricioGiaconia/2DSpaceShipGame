@@ -21,7 +21,8 @@ public class BuffNerfSystem : MonoBehaviour
     [SerializeField] private bool buff = false, nerf = false;
     private Vector2 movement;
     private float outOfScreen = -13f;
-    private bool affected = false;
+    private bool impacted = false;
+
 
     // Update is called once per frame
     void Update()
@@ -30,19 +31,18 @@ public class BuffNerfSystem : MonoBehaviour
 
         this.transform.Translate(movement);
 
-        if (this.transform.position.y < outOfScreen){
+        if (this.transform.position.y < outOfScreen && !impacted){
             Destroy(this.gameObject);
         }
     }
 
-
     // Agregar timer para que se acabe el efecto y vuelva al estado normal. Duracion del buff: 5 segundos.
-    IEnumerator BuffAttackSpeed(ShootingController[] _guns, Transform effect){
+    IEnumerator BuffAttackSpeed(ShootingController[] _guns, Transform effect, Player _player){
 
+        _player.AffectedByItem = true;
 
-        this.affected = true;
         float buffValue = 2f, time = 5f;
-       
+
         Color originalColor = effect.GetComponent<Renderer>().material.color;
         Color colorEffect = new Color(1, 0.92f, 0.016f, 1);
 
@@ -51,21 +51,21 @@ public class BuffNerfSystem : MonoBehaviour
         for(int i = 0; i<_guns.Length; i++){
             _guns[i].FireRate = _guns[i].FireRate / buffValue;
         }
-
-
+ 
         yield return new WaitForSeconds(time);
-
+  
         for(int i = 0; i<_guns.Length; i++){
             _guns[i].FireRate = _guns[i].FireRate * buffValue;
         } 
 
-        this.affected = false;
+        _player.AffectedByItem = false;
         Destroy(this.gameObject);
     }
 
-    IEnumerator NerfSpeed(PlayerController _playerSpeed){
+
+    IEnumerator NerfSpeed(PlayerController _playerSpeed, Player _player){
         
-        this.affected = true;
+        _player.AffectedByItem = true;
 
         float nerfValue = 1.5f, time = 3f;
 
@@ -73,8 +73,9 @@ public class BuffNerfSystem : MonoBehaviour
 
         yield return new WaitForSeconds(time);
 
+        Debug.Log("Holiwis");
         _playerSpeed.Speed = _playerSpeed.Speed * nerfValue;
-        this.affected = false;
+        _player.AffectedByItem = false;
         Destroy(this.gameObject);
     }
 
@@ -91,36 +92,47 @@ public class BuffNerfSystem : MonoBehaviour
     // Pendiente agregar mas buffs y nerfs y agregar efecto visual al player cuando es afectado por algun modificador de stats
     private void OnCollisionEnter2D(Collision2D other) {
            
-        if (other.gameObject.name == "player" && !affected){
-            
+        if (other.gameObject.name == "player"){
+            this.impacted = true;   
+            Player player = other.gameObject.GetComponent<Player>();
             this.name = this.name.Replace("(Clone)", "");
-            
-            switch (this.name){
 
-                case ("AttackSpeed"):   ShootingController[] guns = {other.gameObject.transform.Find("firePoint").GetComponent<ShootingController>(), 
-                                                                        other.gameObject.transform.Find("firePoint2").GetComponent<ShootingController>()};
-                                        Transform lineShip = other.gameObject.transform.Find("ship2-lines");
-                                        StartCoroutine(BuffAttackSpeed(guns, lineShip));
+            if (!player.AffectedByItem || this.name == "Bomb"){
+
+                switch (this.name){
+                   
+                    case ("AttackSpeed"):   ShootingController[] guns = {other.gameObject.transform.Find("firePoint").GetComponent<ShootingController>(), 
+                                                                            other.gameObject.transform.Find("firePoint2").GetComponent<ShootingController>()};
+
+                                            Transform lineShip = other.gameObject.transform.Find("ship2-lines");
+                                          
+                                            StartCoroutine(BuffAttackSpeed(guns, lineShip, player));
+                                        break;
+
+                    case ("Bomb"):  
+                                    DestroyAllEnemies();
+                                    Destroy(this.gameObject);
+
+                                break;
+
+                    case ("SpeedDown"): PlayerController playerSpeed = other.gameObject.GetComponent<PlayerController>();
+                                        
+                                        StartCoroutine(NerfSpeed(playerSpeed, player));
                                     break;
 
-                case ("Bomb"):  
-                                DestroyAllEnemies();
-                                Destroy(this.gameObject);
+                }
+                    
+                //Hago invisible el objecto para que se siga ejecutando el script, una vez finalizado el efecto del buff o nerf se destruye el objecto      
+                Instantiate(impactEffect, this.transform.position, Quaternion.identity);
+                this.gameObject.GetComponent<Renderer>().enabled = false;
 
-                            break;
+            } else if (player.AffectedByItem){
 
-                case ("SpeedDown"): PlayerController playerSpeed = other.gameObject.GetComponent<PlayerController>();
-                                    StartCoroutine(NerfSpeed(playerSpeed));
-                                break;
-            }
-                  
-            //Hago invisible el objecto para que se siga ejecutando el script, una vez finalizado el efecto del buff o nerf se destruye el objecto      
-            Instantiate(impactEffect, this.transform.position, Quaternion.identity);
-            this.gameObject.GetComponent<Renderer>().enabled = false; 
-        } else if (other.gameObject.name == "player" && affected){
+                Debug.Log("No puedes ser afectado por dos items al mismo tiempo");
+                Instantiate(impactEffect, this.transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
 
-            Instantiate(impactEffect, this.transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            }   
 
         }
     }
