@@ -20,13 +20,6 @@ public class HealthController : MonoBehaviour
         }
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void GetBars(){
 
         Image[] bars = this.transform.GetComponentsInChildren<Image>();;
