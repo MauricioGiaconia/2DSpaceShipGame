@@ -22,6 +22,11 @@ public class BuffNerfSystem : MonoBehaviour
     private float outOfScreen = -13f;
     private bool impacted = false;
 
+    private void Start() {
+        
+        this.gameObject.tag = "item";
+       
+    }
 
     // Update is called once per frame
     void Update()

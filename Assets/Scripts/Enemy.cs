@@ -28,6 +28,13 @@ public class Enemy : MonoBehaviour
     }
     
     private void OnCollisionEnter2D(Collision2D other) {
+
+
+        if (other.gameObject.tag == "item"){
+            Debug.Log("Choqué un item!");
+            Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        } 
+           
         Player player = other.gameObject.GetComponent<Player>();
 
         if (player != null){
