@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public OnHealthChangedDelegate onHealthChangedCallback;
     [SerializeField] private float health = 3f,
     maxHealth = 3f,
-    maxTotalHealth = 5f;
+    maxTotalHealth = 10f;
 
     public float Health { get { return health; } }
     public float MaxHealth { get { return maxHealth; } }
@@ -63,9 +63,11 @@ public class Player : MonoBehaviour
 
     public void Heal(float health)
     {
-
-        this.health += health;
-        ClampHealth();
+        if (health < maxHealth){
+            this.health += health;
+            ClampHealth();
+        }
+        
     
     }
 

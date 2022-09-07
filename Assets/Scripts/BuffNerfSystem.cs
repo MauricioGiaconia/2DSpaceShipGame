@@ -18,7 +18,6 @@ public class BuffNerfSystem : MonoBehaviour
 
     [SerializeField] private float speed = 7f;
     [SerializeField] private GameObject impactEffect;
-    [SerializeField] private bool buff = false, nerf = false;
     private Vector2 movement;
     private float outOfScreen = -13f;
     private bool impacted = false;
@@ -73,7 +72,6 @@ public class BuffNerfSystem : MonoBehaviour
 
         yield return new WaitForSeconds(time);
 
-        Debug.Log("Holiwis");
         _playerSpeed.Speed = _playerSpeed.Speed * nerfValue;
         _player.AffectedByItem = false;
         Destroy(this.gameObject);
@@ -97,11 +95,11 @@ public class BuffNerfSystem : MonoBehaviour
             Player player = other.gameObject.GetComponent<Player>();
             this.name = this.name.Replace("(Clone)", "");
 
-            if (!player.AffectedByItem || this.name == "Bomb"){
+            if (!player.AffectedByItem || this.name.ToLower() == "bomb" || this.name.ToLower() == "healthup"){
 
-                switch (this.name){
+                switch (this.name.ToLower()){
                    
-                    case ("AttackSpeed"):   ShootingController[] guns = {other.gameObject.transform.Find("firePoint").GetComponent<ShootingController>(), 
+                    case ("attackspeed"):   ShootingController[] guns = {other.gameObject.transform.Find("firePoint").GetComponent<ShootingController>(), 
                                                                             other.gameObject.transform.Find("firePoint2").GetComponent<ShootingController>()};
 
                                             Transform lineShip = other.gameObject.transform.Find("ship2-lines");
@@ -109,15 +107,18 @@ public class BuffNerfSystem : MonoBehaviour
                                             StartCoroutine(BuffAttackSpeed(guns, lineShip, player));
                                         break;
 
-                    case ("Bomb"):  
+                    case ("bomb"):  
                                     DestroyAllEnemies();
                                     Destroy(this.gameObject);
 
                                 break;
 
-                    case ("SpeedDown"): PlayerController playerSpeed = other.gameObject.GetComponent<PlayerController>();
+                    case ("speeddown"): PlayerController playerSpeed = other.gameObject.GetComponent<PlayerController>();
                                         
                                         StartCoroutine(NerfSpeed(playerSpeed, player));
+                                    break;
+
+                    case ("healthup"): player.AddHealth();
                                     break;
 
                 }
