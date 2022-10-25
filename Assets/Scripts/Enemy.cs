@@ -24,6 +24,14 @@ public class Enemy : MonoBehaviour
         Instantiate(deathEffect, this.transform.position, Quaternion.identity);
 
         Destroy(this.gameObject);
+
+        ScoreController score = GameObject.FindWithTag("score").GetComponent<ScoreController>();
+
+        if (score != null){
+           score.AddScore();
+        }
+
+        
        
     }
     

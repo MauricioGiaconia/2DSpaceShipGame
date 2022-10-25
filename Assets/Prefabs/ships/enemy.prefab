@@ -254,6 +254,7 @@ MonoBehaviour:
   health: 1
   deathEffect: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
   dmgToPlayer: 1
+  score: {fileID: 0}
 --- !u!60 &7790762484479471320
 PolygonCollider2D:
   m_ObjectHideFlags: 0

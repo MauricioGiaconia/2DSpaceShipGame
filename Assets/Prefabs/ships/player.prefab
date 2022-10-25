@@ -108,6 +108,7 @@ MonoBehaviour:
   maxHealth: 3
   maxTotalHealth: 5
   deathEffect: {fileID: 8038344524183138613, guid: 0277167a12290af47801444830a2be97, type: 3}
+  score: {fileID: 0}
 --- !u!114 &7474509440514304095
 MonoBehaviour:
   m_ObjectHideFlags: 0

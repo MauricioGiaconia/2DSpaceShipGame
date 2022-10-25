@@ -24,13 +24,16 @@ public class Player : MonoBehaviour
     private float changeToNormalColor = 0.25f, waitToChange = 0f;
     private bool hitted = false;
 
-    private DeadMenu restartButton;
+    
 
     //Variable para saber si el jugador esta afectado por un buff o nerf
     private bool affectedByItem = false;
 
     public bool AffectedByItem {get {return this.affectedByItem;}
                                 set {this.affectedByItem = value;}}
+
+    // UI
+    private DeadMenu restartButton;
     
     private void Start() {
 
@@ -118,6 +121,7 @@ public class Player : MonoBehaviour
         if (restartButton != null){
             restartButton.setDeath(true);
         }
+
     }
     
 }

@@ -24,6 +24,8 @@ public class MainMenu : MonoBehaviour
         
     }
 
+    /// AGREGAR ARRAY CON EL QUE SE HARÁ LA PAGINACION CON LAS INSTRUCICONES DEL JUEGO
+
     public void QuitGame(){
         Application.Quit();
     }

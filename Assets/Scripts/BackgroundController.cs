@@ -48,8 +48,9 @@ public class BackgroundController : MonoBehaviour
             }
         }
 
-        if (buffsNerfs != null){
-            
+        //Si hay bufos o nerfeos en el array, entonces los spawneo
+        if (buffsNerfs.Length > 0){
+
             if (waitBuff < timeBetweenBuffs){
 
                 waitBuff += Time.deltaTime;
