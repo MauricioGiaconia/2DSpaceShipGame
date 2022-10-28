@@ -15,7 +15,8 @@ public class Enemy : MonoBehaviour
         health -= dmg;
 
         if (health <= 0){
-            Die();
+
+            Die();  
         }
     }
 

@@ -223,6 +223,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7310349481193834026, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7310349481193834026, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+      propertyPath: Priority
+      value: 77
+      objectReference: {fileID: 0}
+    - target: {fileID: -7310349481193834026, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+      propertyPath: m_Volume
+      value: 0.249
+      objectReference: {fileID: 0}
+    - target: {fileID: -7310349481193834026, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2355237892537202208, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -335,6 +351,30 @@ PrefabInstance:
       propertyPath: playerYPosition
       value: -8.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7649309099825517466, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+      propertyPath: fireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649309099825517466, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+      propertyPath: isPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649309099825517466, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 2078912351}
+    - target: {fileID: 7649309099825517466, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 1860706049015914, guid: 0b0c27137eb4d504096874b80ace66bd, type: 3}
+    - target: {fileID: 7649309099825517466, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+      propertyPath: firePointTwo
+      value: 
+      objectReference: {fileID: 2078912349}
+    - target: {fileID: 7649309099825517466, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+      propertyPath: firePointOriginal
+      value: 
+      objectReference: {fileID: 2078912348}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
 --- !u!114 &2078912347 stripped
@@ -348,6 +388,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84be28f369f30294391eedda1bbf2379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &2078912348 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1672155962357680572, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+  m_PrefabInstance: {fileID: 2078912346}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2078912349 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2071867157446269092, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+  m_PrefabInstance: {fileID: 2078912346}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2078912351 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -7310349481193834026, guid: 3d3b69bb061c0a547826e2836a3a7146, type: 3}
+  m_PrefabInstance: {fileID: 2078912346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2247546555500645015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -578,6 +633,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3654014832497510013, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654014832497510013, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4177345832896556972, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
       propertyPath: congrats
       value: 
@@ -587,9 +650,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 998166659}
     - target: {fileID: 4177345832896556972, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
+      propertyPath: deadMenuSound
+      value: 
+      objectReference: {fileID: 5867187463988930636}
+    - target: {fileID: 4177345832896556972, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
       propertyPath: restartButton
       value: 
       objectReference: {fileID: 1767064328}
+    - target: {fileID: 4177345832896556972, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
+      propertyPath: newHighscoreSound
+      value: 
+      objectReference: {fileID: 5867187463988930635}
     - target: {fileID: 5867187464084049973, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
       propertyPath: m_Name
       value: MainCamera
@@ -642,6 +713,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9175554498235278984, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175554498235278984, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2667a0a008b044e218b63df62e2be749, type: 3}
+    - target: {fileID: 9175554498235278984, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
 --- !u!114 &5867187463988930634 stripped
@@ -655,6 +738,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c589977a9701343be9c0930cd604f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &5867187463988930635 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9175554498235278984, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
+  m_PrefabInstance: {fileID: 5867187463988930633}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &5867187463988930636 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3654014832497510013, guid: 3b3a0f496ea5b274c9ddcd73bd95cb2d, type: 3}
+  m_PrefabInstance: {fileID: 5867187463988930633}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6637883863668874531
 PrefabInstance:
   m_ObjectHideFlags: 0

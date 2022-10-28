@@ -5,34 +5,62 @@ using UnityEngine;
 public class ShootingController : MonoBehaviour
 {
 
-    [SerializeField] private Transform firePoint;
-    public GameObject bulletPrefab;
+    [SerializeField] private Transform firePointOriginal, firePointTwo;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private bool isPlayer = false;
+    [SerializeField] private AudioSource shootSound; 
 
-    private float fireRate = 0.5f, nextFire = 0f;
+    public bool originalIsShooting = true;
+
+    [SerializeField] private float fireRate = 0.75f;
 
     public float FireRate{
         get{return fireRate;}
         set{fireRate = value;}
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+    private float nextFire = 0f, yPositionToStartShoot = 10f;
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Fire rate: " + fireRate);
-        if (Input.GetButton("Fire1") && Time.time > nextFire){
-            nextFire = Time.time + fireRate;
-            Shoot();
+
+        if (isPlayer && Input.GetButton("Fire1") && Time.time > nextFire){
+
+            CalculateFireRate();
+        } else if (!isPlayer && this.transform.position.y < yPositionToStartShoot){
+            
+             if (Time.time > nextFire){
+                this.nextFire = Time.time + this.fireRate;
+                Shoot();
+            }
         }
-        
+    }
+
+    void CalculateFireRate(){
+        if (Time.time > nextFire){
+                this.nextFire = Time.time + this.fireRate;
+                Shoot();
+            }
     }
 
     void Shoot(){
-        //Codigo para disparar
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+
+        if (originalIsShooting){
+
+            Instantiate(bulletPrefab, firePointOriginal.position, firePointOriginal.rotation);
+            originalIsShooting = false;
+
+        } else {
+
+            Instantiate(bulletPrefab, firePointTwo.position, firePointTwo.rotation);
+            originalIsShooting = true;
+
+        }
+        
+        if (shootSound != null){
+            shootSound.Play();
+        }
     }
 }

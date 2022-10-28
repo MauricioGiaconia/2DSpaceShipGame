@@ -18,6 +18,7 @@ public class BuffNerfSystem : MonoBehaviour
 
     [SerializeField] private float speed = 7f;
     [SerializeField] private GameObject impactEffect;
+    [SerializeField] private AudioSource sound;
     private Vector2 movement;
     private float outOfScreen = -13f;
     private bool impacted = false;
@@ -41,10 +42,9 @@ public class BuffNerfSystem : MonoBehaviour
     }
 
     // Agregar timer para que se acabe el efecto y vuelva al estado normal. Duracion del buff: 5 segundos.
-    IEnumerator BuffAttackSpeed(ShootingController[] _guns, Transform effect, Player _player){
+    IEnumerator BuffAttackSpeed(ShootingController _gun, Transform effect, Player _player){
 
         _player.AffectedByItem = true;
-
         float buffValue = 2f, time = 5f;
 
         Color originalColor = effect.GetComponent<Renderer>().material.color;
@@ -52,15 +52,15 @@ public class BuffNerfSystem : MonoBehaviour
 
         effect.GetComponent<Renderer>().material.color = colorEffect;
 
-        for(int i = 0; i<_guns.Length; i++){
-            _guns[i].FireRate = _guns[i].FireRate / buffValue;
-        }
+        
+        _gun.FireRate = _gun.FireRate / buffValue;
+        
  
         yield return new WaitForSeconds(time);
   
-        for(int i = 0; i<_guns.Length; i++){
-            _guns[i].FireRate = _guns[i].FireRate * buffValue;
-        } 
+        
+        _gun.FireRate = _gun.FireRate * buffValue;
+        
 
         _player.AffectedByItem = false;
         Destroy(this.gameObject);
@@ -96,20 +96,24 @@ public class BuffNerfSystem : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
            
         if (other.gameObject.name == "player"){
+
             this.impacted = true;   
             Player player = other.gameObject.GetComponent<Player>();
             this.name = this.name.Replace("(Clone)", "");
 
             if (!player.AffectedByItem || this.name.ToLower() == "bomb" || this.name.ToLower() == "healthup"){
 
+                if (this.sound != null){
+                    this.sound.Play();
+                }
+
                 switch (this.name.ToLower()){
                    
-                    case ("attackspeed"):   ShootingController[] guns = {other.gameObject.transform.Find("firePoint").GetComponent<ShootingController>(), 
-                                                                            other.gameObject.transform.Find("firePoint2").GetComponent<ShootingController>()};
+                    case ("attackspeed"):   ShootingController gun = other.gameObject.GetComponent<ShootingController>();
 
                                             Transform lineShip = other.gameObject.transform.Find("ship2-lines");
                                           
-                                            StartCoroutine(BuffAttackSpeed(guns, lineShip, player));
+                                            StartCoroutine(BuffAttackSpeed(gun, lineShip, player));
                                         break;
 
                     case ("bomb"):  

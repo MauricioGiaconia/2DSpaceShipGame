@@ -18,11 +18,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 startPosition;
     private Vector2 moveShip;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
 
     // Update is called once per frame
     void Update()

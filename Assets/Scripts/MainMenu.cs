@@ -7,12 +7,16 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject optionsMenu;
+    [SerializeField] private AudioSource selectSound;
 
     public void PlayGame() {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // Carga la siguiente escena (La del juego)
+        Selected();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // Carga la siguiente escena (La del juego)
     }
 
     public void SwithMenuOrOptions(){
+
+        Selected();
 
         if (mainMenu.activeSelf == true){
             mainMenu.SetActive(false);
@@ -27,6 +31,12 @@ public class MainMenu : MonoBehaviour
     /// AGREGAR ARRAY CON EL QUE SE HARÁ LA PAGINACION CON LAS INSTRUCICONES DEL JUEGO
 
     public void QuitGame(){
+        Selected();
         Application.Quit();
+    }
+
+    public void Selected(){
+        
+        selectSound.Play();
     }
 }
